@@ -1,5 +1,5 @@
 class vim::install inherits vim {
-	package {['vim', 'git', 'curl']:
+	package {['vim', 'git', 'curl', 'zip']:
 		ensure => present
 	}
 

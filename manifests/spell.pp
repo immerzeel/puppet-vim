@@ -1,8 +1,4 @@
 class vim::spell inherits vim {
-	package {['zip', 'curl']:
-		ensure => present
-	}
-
 	# Create the spell directory.
 	file {"${path}/.spell":
 		ensure  => directory
@@ -24,5 +20,4 @@ class vim::spell inherits vim {
 		ensure => 'link',
 		target => "${path}/${repository_name}/spellfile.add"
 	}
-
 }
