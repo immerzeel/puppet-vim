@@ -9,18 +9,4 @@ class vim::install inherits vim {
 		provider => git,
 		source   => $source
 	}
-
-	if $bundle_source !='' {
-		# Install the Vundle plugin, which is needed to install
-		# the rest of the plugins.
-		vcsrepo {"${path}/${repository_name}/bundle/":
-			ensure   => present,
-			provider => git,
-			source   => $bundle_source
-		} ->
-
-		exec {'install_plugins':
-			command => "vim +BundleUpdate"
-		}
-	}
 }
