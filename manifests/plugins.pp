@@ -11,7 +11,7 @@ class vim::plugins inherits vim {
 
 		# Let the Vundle plugin install the plugins in the .vimrc.
 		exec {'install_plugins':
-			command => "vim +BundleUpdate"
+			command => 'vim -c "execute \"BundleInstall\" | q | q"'
 		}
 	}
 }
