@@ -31,6 +31,7 @@ class vim (
 	$user            = $vim::params::user
 ) inherits vim::params {
 	validate_string($bundle_source,
+			$group,
 			$path,
 			$repository_name,
 			$source,
@@ -38,7 +39,7 @@ class vim (
 
 	anchor {'vim::begin':} ->
 	class {'vim::install':} ->
-	class {'vim::config':} ~>
+	class {'vim::config':} ->
 	class {'vim::plugins':} ->
 	class {'vim::spell':} ->
 	anchor {'vim::end':}
