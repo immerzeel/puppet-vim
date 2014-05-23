@@ -5,6 +5,7 @@ class vim::params {
 
 	# On virtual machine, default to 'vagrant'.
 	if $::is_virtual {
+		$group  = 'vagrant'
 		$user   = 'vagrant'
 		$path   = '/home/vagrant'
 	}

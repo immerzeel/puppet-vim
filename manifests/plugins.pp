@@ -5,8 +5,8 @@ class vim::plugins inherits vim {
 		vcsrepo {"${path}/${repository_name}/bundle/vundle":
 			before   => Exec['install_plugins'],
 			ensure   => present,
-			group    => $vim::params::user,
-			owner    => $vim::params::user,
+			group    => $group,
+			owner    => $user,
 			provider => git,
 			source   => $bundle_source
 		}
@@ -14,7 +14,7 @@ class vim::plugins inherits vim {
 		# Let the Vundle plugin install the plugins in the .vimrc.
 		exec {'install_plugins':
 			command => "vim +BundleInstall +qall",
-			user    => $vim::params::user
+			user    => $user
 		}
 	}
 }

@@ -24,6 +24,7 @@
 #
 class vim (
 	$bundle_source   = $vim::params::bundle_source,
+	$group           = $vim::params::group,
 	$path            = $vim::params::path,
 	$repository_name = $vim::params::repository_name,
 	$source          = $vim::params::source,
@@ -37,7 +38,7 @@ class vim (
 
 	anchor {'vim::begin':} ->
 	class {'vim::install':} ->
-	class {'vim::config':} ->
+	class {'vim::config':} ~>
 	class {'vim::plugins':} ->
 	class {'vim::spell':} ->
 	anchor {'vim::end':}
