@@ -6,6 +6,8 @@ class vim::install inherits vim {
 	# Clone the remote vimfiles repo to the user home directory.
 	vcsrepo {"${path}/${repository_name}":
 		ensure   => present,
+		group  => $vim::params::user,
+		owner  => $vim::params::user,
 		provider => git,
 		source   => $source
 	}
