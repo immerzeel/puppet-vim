@@ -21,7 +21,7 @@ class vim::plugins inherits vim {
 		# Let the Vundle plugin install the plugins in the .vimrc.
 		exec {'install_plugins':
 			command     => "vim +BundleInstall +qall",
-			environment => "$HOME=/home/vagrant",
+			environment => "HOME=/home/vagrant",
 			user        => $user
 		}
 	}
