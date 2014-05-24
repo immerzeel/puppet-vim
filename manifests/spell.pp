@@ -14,11 +14,17 @@ class vim::spell inherits vim {
 		user    => $user
 	} ->
 
-	# Extract the thesaurus file from the archive and delete the archive.
+	# Extract the thesaurus file from the archive.
 	exec {'install_thesaurus':
-		command => "unzip -p mthes10.zip mthesaur.txt > thesaurus.txt | rm mthes10.zip",
+		command => "unzip -p mthes10.zip mthesaur.txt > thesaurus.txt",
+		creates => "${path}/.spell/thesaurus.txt",
 		cwd     => "${path}/.spell",
 		user    => $user
+	} ->
+
+	# Delete the archive, we don't need the other files.
+	file {"${path}/.spell/mthes10.zip":
+		ensure => purge
 	} ->
 
 	# Link to the custom words file.
