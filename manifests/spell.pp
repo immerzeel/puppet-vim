@@ -24,7 +24,7 @@ class vim::spell inherits vim {
 
 	# Delete the archive, we don't need the other files.
 	file {"${path}/.spell/mthes10.zip":
-		ensure => purge
+		ensure => absent
 	} ->
 
 	# Link to the custom words file.
