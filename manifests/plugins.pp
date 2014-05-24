@@ -9,17 +9,21 @@ class vim::plugins inherits vim {
 		}
 		# Install the Vundle plugin, which is needed to install
 		# the rest of the plugins.
+		#
+		# Decided to install the plugins after provisioning, as 
+		# this section could timeout and there is no real estimate
+		# to make how long it could take.
+		#
+		# After installation:
+		#
+		# Run `vim +BundleInstall +qall` or enter :BundleInstall
+		# when Vim is running.
 		vcsrepo {"${path}/${repository_name}/bundle/vundle":
-			before   => Notify['install_plugins_later'],
 			ensure   => present,
 			group    => $group,
 			owner    => $user,
 			provider => git,
 			source   => $bundle_source
-		}
-
-		notify {'install_plugins_later':
-			message => "Installation of the Vim plugins takes too long. run 'vim +BundleInstall +qall' after provisioning."
 		}
 	}
 }
